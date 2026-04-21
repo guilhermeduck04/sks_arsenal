@@ -1,0 +1,257 @@
+@font-face {
+    font-family: MainB;
+    src: url('font2.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: MainN;
+    src: url('font1.ttf');
+    font-weight: normal;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 13px;
+    background: transparent;
+    height: 10px;
+}
+::-webkit-scrollbar {
+    width: 3px;
+    background: transparent;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 13px;
+    background:  rgba(0, 0, 0, 0.397);
+    height: 10px;
+}
+
+
+/* ======================================================================== */
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.gameBg {
+    height: 100vh;
+    width: 100vw;
+    background: url('images/desfocado.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.black-screen {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    opacity: 100%;
+    background-color: black;
+    opacity: 50%;
+    z-index: 1;
+}
+
+/* ===================================================== */
+
+.all {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 2;
+
+}
+
+.all header {
+    width: 100vw;
+    background-color: black;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.title-container {
+    height: 60px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 10px;
+}
+
+.title-container img {
+    height: 35px;
+}
+
+.title-container p {
+    color: white;
+    font-family: MainB;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+
+.filter-container {
+    height: 100%;
+    display: flex;
+    font-family: MainN;
+    align-items: flex-end;
+}
+
+
+.filter {
+    color: white;
+    margin: 5px 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.active-filter {
+    border-bottom: solid 5px #ffc600;
+    margin: 0px 10px !important;
+}
+
+/* =================================================================== */
+
+main {
+    height: calc(100vh - 60px);
+    width: 100vw;
+    padding: 40px;
+    display: flex;
+    
+}
+
+.chooseGun-container {
+    height: 100%;
+    width: 550px;
+    /* background-color: red; */
+    overflow-y: scroll;
+}
+
+.chooseGun-container h1 {
+    font-family: MainB;
+    color: white;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.unit-gun {
+    height: 110px;
+    width: 99%;
+    background-color: rgba(0, 0, 0, 0.493);
+    margin: 8px 0px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.img-container {
+    height: 100%;
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.img-container img {
+    height: 70px;
+    
+}
+
+.unit-gun p {
+    font-family: MainB;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+    margin-left: 100px ;
+    justify-self: center;
+}
+
+
+.unit-gun button {
+    margin-left: 100px;
+    height: 50px;
+    width: 120px;
+    font-family: MainB;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: rgb(0, 0, 0);
+    background-color: #ffc600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color, height, width, 500ms;
+    cursor: pointer;
+}
+
+.unit-gun button:hover {
+    background-color: #ffc600;
+    height: 60px;
+    width: 130px;
+}
+
+/* ===================================================================== */
+
+.gunInf-container {
+    height: 100%;
+    width: 736px;
+    padding: 50px;
+    display: flex;
+    align-items: center;    
+    flex-direction: column;
+}
+
+.gunInf-container img {
+    height: 170px;
+}
+
+.fullImg-container {
+    height: 200px
+}
+
+.gunInf-container h1 {
+    font-family: MainB;
+    color: white;
+    font-size: 55px;
+    margin-bottom: 50px;
+}
+
+.spec-info {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    margin: 5px;
+}
+
+.spec-info p{
+    font-family: MainB;
+    color: white;
+    font-size: 40px;
+    margin-right: 20px;
+    
+}
+
+.empyt {
+    overflow: hidden;
+    background-color: white;
+    width: 100%;
+    height: 30px;
+    border-radius: 10000px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 30px;
+    font-family: MainB;
+    color: white;
+    background-color: #cba004;
+    padding-top: 5px;
+    padding-right: 10px;
+    border-radius: 10000px;
+    text-align: right;
+    transition: all 600ms;
+}
+
+

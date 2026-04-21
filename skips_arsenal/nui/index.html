@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transition.css">
+</head>
+<body>
+    
+    <div class="all" style = 'display: none'>
+        <header>
+            <div class="title-container">
+                <img src="images/voidpng2.png" alt="">
+                <p>ARSENAL POLÍCIA</p>
+            </div>
+
+            <div class="filter-container">
+                <p class ='filter active-filter' onclick = 'changeFilter(event)' >ARMAS DE FOGO</p>
+                <p class = 'filter'  onclick = 'changeFilter(event)'>UTILITÁRIOS</p>
+            </div>
+        </header>
+
+        <main>
+            <aside class="chooseGun-container">
+                <h1 class = 'main-title'>ARMAS DE FOGO</h1>
+
+
+                <div class="unit-gun gun" onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'M4A1' data-status = '7|4|6' data-url = 'images/carbinerifle.png'> 
+                    <div class="img-container">
+                        <img src="images/carbinerifle.png" alt="">
+                    </div>
+                    <p>M4A1</p>
+                    <button  onclick = 'sendData(event)' data-id = 'm4a1'  style = 'display: none'>Equipar</button>
+                </div>
+                
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'PARAFAL 7.62' data-status = '7|5|6' data-url = 'images/specialcarbine.png'> 
+                    <div class="img-container">
+                        <img src="images/specialcarbine.png" alt="">
+                    </div>
+                    <p>PARAFAL</p>
+                    <button onclick = 'sendData(event)' data-id = 'm4a4'  style = 'display: none'>Equipar</button>
+                </div>
+
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'MP5' data-status = '8|3|6' data-url = 'images/smg.png'> 
+                    <div class="img-container">
+                        <img src="images/smg.png" alt="">
+                    </div>
+                    <p>MP5</p>
+                    <button onclick = 'sendData(event)' data-id = 'mp5'  style = 'display: none'>Equipar</button>
+                </div>
+
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'MPX' data-status = '7|4|7' data-url = 'images/mpx.png'> 
+                    <div class="img-container">
+                        <img src="images/mpx.png" alt="">
+                    </div>
+                    <p>MPX</p>
+                    <button onclick = 'sendData(event)' data-id = 'mpx'  style = 'display: none'>Equipar</button>
+                </div>
+
+
+
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'SHOTGUN' data-status = '2|7|3' data-url = 'images/pumpshotgun.png'> 
+                    <div class="img-container">
+                        <img src="images/pumpshotgun.png" alt="">
+                    </div>
+                    <p>SHOTGUN</p>
+                    <button onclick = 'sendData(event)' data-id = 'shot45'  style = 'display: none'>Equipar</button>
+                </div>
+
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'FIVE SEVEN' data-status = '4|4|4' data-url = 'images/pistolmk2.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img src="images/pistolmk2.png" alt="">
+                    </div>
+                    <p>FIVE SEVEN</p>
+                    <button  onclick = 'sendData(event)' data-id = 'fiveseven' style = 'display: none'>Equipar</button>
+                </div>
+
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'GLOCK 18' data-status = '4|4|4' data-url = 'images/combatpistol.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img src="images/combatpistol.png" alt="">
+                    </div>
+                    <p>GLOCK 18</p>
+                    <button  onclick = 'sendData(event)' data-id = 'glock18' style = 'display: none'>Equipar</button>
+                </div>
+
+
+                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'GUARDAR ARMAS' data-status = '0|0|0' data-url = 'images/ammo.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img src="images/ammo.png" alt="">
+                    </div>
+                    <p>GUARDAR</p>
+                    <button  onclick = 'sendData(event)' data-id = 'Limpar' style = 'display: none'>LIMPAR</button>
+                </div>
+
+                <!-- ============================================================================================================================================================================================ -->
+
+                <div style = 'display: none' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'TASER' data-status = '2|0|0' data-url = 'images\choque.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img src="images/choque.png" alt="">
+                    </div>
+                    <p>TASER</p>
+                    <button  onclick = 'sendData(event)' data-id = 'Taser' style = 'display: none'>Equipar</button>
+                </div>
+
+                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'CASSETETE' data-status = '2|2|0' data-url = 'images/cacetete.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img  src="images/cacetete.png" alt="">
+                    </div>
+                    <p>CASSETETE</p>
+                    <button  onclick = 'sendData(event)' data-id = 'KCT' style = 'display: none'>Equipar</button>
+                </div>
+
+                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'FACA' data-status = '2|2|0' data-url = 'images/faca.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img  src="images/faca.png" alt="">
+                    </div>
+                    <p>FACA</p>
+                    <button  onclick = 'sendData(event)' data-id = 'Faca' style = 'display: none'>Equipar</button>
+                </div>
+
+                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'LANTERNA' data-status = '0|0|0' data-url = 'images\lanterna.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img style = 'height: 30px' src="images/lanterna.png" alt="">
+                    </div>
+                    <p>LANTERNA</p>
+                    <button  onclick = 'sendData(event)' data-id = 'Lanterna' style = 'display: none'>Equipar</button>
+                </div>
+
+                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'COLETE' data-status = '0|0|0' data-url = 'images/colete1.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img  src="images/colete1.png" alt="">
+                    </div>
+                    <p>COLETE</p>
+                    <button  onclick = 'sendData(event)' data-id = 'colete' style = 'display: none'>Equipar</button>
+                </div>
+
+                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'GUARDAR ARMAS' data-status = '0|0|0' data-url = 'images/ammo.png'>
+                    <div class="img-container" style = 'justify-content: center;'>
+                        <img  src="images/ammo.png" alt="">
+                    </div>
+                    <p>GUARDAR</p>
+                    <button  onclick = 'sendData(event)' data-id = 'Limpar' style = 'display: none'>Equipar</button>
+                </div>
+
+
+            </aside>
+
+            <aside style = "display: none" class="gunInf-container">
+                <h1 class="mainTitle">MPX</h1>
+                <div class = 'fullImg-container'>
+                    <img class="bigImage" src="images/carbine-rifle-mk2.png" alt="">
+                </div>
+                <div class="status-container">
+                    <div class="status-unit">
+                        <div class = 'spec-info'>
+                            <p>C</p>
+                            <div class="empyt">
+                                <div class="fill C width">9/10</div>
+                            </div>
+                        </div>
+                        <div class = 'spec-info'>
+                            <p>R</p>
+                            <div class="empyt">
+                                <div class="fill R width" >7/10</div>
+                            </div>
+                        </div>
+                        <div class = 'spec-info'>
+                            <p>D</p>
+                            <div class="empyt">
+                                <div class="fill D width">4/10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <div class="black-screen" style = 'display: none'></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
