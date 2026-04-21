@@ -35,7 +35,11 @@
             <nav class="category-nav">
                 <button class="cat-btn active" data-cat="firearms" onclick="changeCategory(event)">
                     <svg viewBox="0 0 24 24" fill="none"><path d="M3 12H7L9 7L12 17L14 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    ARMAS DE FOGO
+                    ARMAS
+                </button>
+                <button class="cat-btn" data-cat="ammo" onclick="changeCategory(event)">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="5" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="19" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    MUNIÇÃO
                 </button>
                 <button class="cat-btn" data-cat="utilities" onclick="changeCategory(event)">
                     <svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -71,315 +75,275 @@
 
             <!-- Cabeçalho da categoria -->
             <div class="content-header">
-                <h1 class="content-title" id="categoryTitle">ARMAS DE FOGO</h1>
-                <span class="content-count" id="categoryCount">7 itens</span>
+                <h1 class="content-title" id="categoryTitle">ARMAS</h1>
+                <span class="content-count" id="categoryCount">0 itens</span>
             </div>
 
-            <!-- Grid de armas -->
+            <!-- Grid de itens -->
             <div class="weapons-grid" id="weaponsGrid">
 
-                <!-- ===== ARMAS DE FOGO ===== -->
-
-                <div class="weapon-card firearms"
-                    data-action="m4a1"
-                    data-name="M4A1"
-                    data-type="Rifle de Assalto"
-                    data-ammo="200 munições"
-                    data-cadencia="7"
-                    data-recuo="4"
-                    data-dano="6"
-                    data-url="images/carbinerifle.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/carbinerifle.png" alt="M4A1">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Rifle de Assalto</span>
-                        <span class="card-name">M4A1</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <!-- ===== PISTOLAS ===== -->
+                <div class="item-card firearms" data-id="appistol" data-name="Koch VP9" data-type="Pistola" data-cadencia="5" data-recuo="3" data-dano="4" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/pistolmk2.png" alt="Koch VP9"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">Koch VP9</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card firearms"
-                    data-action="m4a4"
-                    data-name="PARAFAL 7.62"
-                    data-type="Rifle de Assalto"
-                    data-ammo="200 munições"
-                    data-cadencia="7"
-                    data-recuo="5"
-                    data-dano="6"
-                    data-url="images/specialcarbine.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/specialcarbine.png" alt="PARAFAL">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Rifle de Assalto</span>
-                        <span class="card-name">PARAFAL 7.62</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card firearms" data-id="m1911" data-name="M1911" data-type="Pistola" data-cadencia="4" data-recuo="4" data-dano="5" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/pistolmk2.png" alt="M1911"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">M1911</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card firearms"
-                    data-action="mp5"
-                    data-name="MP5"
-                    data-type="Submetralhadora"
-                    data-ammo="200 munições"
-                    data-cadencia="8"
-                    data-recuo="3"
-                    data-dano="5"
-                    data-url="images/smg.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/smg.png" alt="MP5">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Submetralhadora</span>
-                        <span class="card-name">MP5</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card firearms" data-id="fiveseven" data-name="FN Five Seven" data-type="Pistola" data-cadencia="6" data-recuo="3" data-dano="4" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/pistolmk2.png" alt="FN Five Seven"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">FN Five Seven</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card firearms"
-                    data-action="mpx"
-                    data-name="MPX"
-                    data-type="Submetralhadora"
-                    data-ammo="200 munições"
-                    data-cadencia="7"
-                    data-recuo="4"
-                    data-dano="5"
-                    data-url="images/mpx.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/mpx.png" alt="MPX">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Submetralhadora</span>
-                        <span class="card-name">MPX</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card firearms" data-id="desert" data-name="Desert Eagle" data-type="Pistola" data-cadencia="3" data-recuo="6" data-dano="8" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/pistolmk2.png" alt="Desert Eagle"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">Desert Eagle</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card firearms"
-                    data-action="shot45"
-                    data-name="SHOTGUN"
-                    data-type="Espingarda"
-                    data-ammo="100 munições"
-                    data-cadencia="2"
-                    data-recuo="7"
-                    data-dano="9"
-                    data-url="images/pumpshotgun.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/pumpshotgun.png" alt="Shotgun">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Espingarda</span>
-                        <span class="card-name">SHOTGUN</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card firearms" data-id="glock19" data-name="Glock 19" data-type="Pistola" data-cadencia="6" data-recuo="3" data-dano="4" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/combatpistol.png" alt="Glock 19"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">Glock 19</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card firearms"
-                    data-action="fiveseven"
-                    data-name="FIVE SEVEN"
-                    data-type="Pistola"
-                    data-ammo="250 munições"
-                    data-cadencia="5"
-                    data-recuo="3"
-                    data-dano="4"
-                    data-url="images/pistolmk2.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/pistolmk2.png" alt="Five Seven">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Pistola</span>
-                        <span class="card-name">FIVE SEVEN</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card firearms" data-id="amt380" data-name="AMT 380" data-type="Pistola" data-cadencia="5" data-recuo="2" data-dano="3" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/combatpistol.png" alt="AMT 380"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">AMT 380</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card firearms"
-                    data-action="glock18"
-                    data-name="GLOCK 18"
-                    data-type="Pistola"
-                    data-ammo="250 munições"
-                    data-cadencia="6"
-                    data-recuo="3"
-                    data-dano="4"
-                    data-url="images/combatpistol.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/combatpistol.png" alt="Glock 18">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Pistola</span>
-                        <span class="card-name">GLOCK 18</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card firearms" data-id="m1922" data-name="M1922" data-type="Pistola" data-cadencia="4" data-recuo="3" data-dano="4" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/combatpistol.png" alt="M1922"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">M1922</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="magnum44" data-name="Magnum 44" data-type="Pistola" data-cadencia="2" data-recuo="8" data-dano="9" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/pistolmk2.png" alt="Magnum 44"></div>
+                    <div class="card-info"><span class="card-type">Pistola</span><span class="card-name">Magnum 44</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <!-- ===== SMGs ===== -->
+                <div class="item-card firearms" data-id="uzi" data-name="Uzi" data-type="Submetralhadora" data-cadencia="8" data-recuo="4" data-dano="4" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/smg.png" alt="Uzi"></div>
+                    <div class="card-info"><span class="card-type">Submetralhadora</span><span class="card-name">Uzi</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="smg" data-name="MP5" data-type="Submetralhadora" data-cadencia="8" data-recuo="3" data-dano="5" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/smg.png" alt="MP5"></div>
+                    <div class="card-info"><span class="card-type">Submetralhadora</span><span class="card-name">MP5</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="mtar21" data-name="MTAR-21" data-type="Submetralhadora" data-cadencia="7" data-recuo="4" data-dano="5" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/smg.png" alt="MTAR-21"></div>
+                    <div class="card-info"><span class="card-type">Submetralhadora</span><span class="card-name">MTAR-21</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="tec9" data-name="Tec-9" data-type="Submetralhadora" data-cadencia="9" data-recuo="5" data-dano="3" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/smg.png" alt="Tec-9"></div>
+                    <div class="card-info"><span class="card-type">Submetralhadora</span><span class="card-name">Tec-9</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <!-- ===== SHOTGUNS ===== -->
+                <div class="item-card firearms" data-id="remington" data-name="Remington 870" data-type="Espingarda" data-cadencia="2" data-recuo="8" data-dano="9" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/pumpshotgun.png" alt="Remington 870"></div>
+                    <div class="card-info"><span class="card-type">Espingarda</span><span class="card-name">Remington 870</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <!-- ===== RIFLES ===== -->
+                <div class="item-card firearms" data-id="m4a1" data-name="M4A1" data-type="Rifle de Assalto" data-cadencia="7" data-recuo="4" data-dano="6" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/carbinerifle.png" alt="M4A1"></div>
+                    <div class="card-info"><span class="card-type">Rifle de Assalto</span><span class="card-name">M4A1</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="ak47" data-name="AK-47" data-type="Rifle de Assalto" data-cadencia="7" data-recuo="5" data-dano="7" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/specialcarbine.png" alt="AK-47"></div>
+                    <div class="card-info"><span class="card-type">Rifle de Assalto</span><span class="card-name">AK-47</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="thompson" data-name="Thompson" data-type="Rifle de Assalto" data-cadencia="6" data-recuo="4" data-dano="6" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/specialcarbine.png" alt="Thompson"></div>
+                    <div class="card-info"><span class="card-type">Rifle de Assalto</span><span class="card-name">Thompson</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="g36c" data-name="G36" data-type="Rifle de Assalto" data-cadencia="8" data-recuo="3" data-dano="6" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/carbinerifle.png" alt="G36"></div>
+                    <div class="card-info"><span class="card-type">Rifle de Assalto</span><span class="card-name">G36</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="Sniper" data-name="Sniper" data-type="Rifle de Precisão" data-cadencia="1" data-recuo="9" data-dano="10" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/carbinerifle.png" alt="Sniper"></div>
+                    <div class="card-info"><span class="card-type">Rifle de Precisão</span><span class="card-name">Sniper</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <div class="item-card firearms" data-id="winchester22" data-name="Winchester 22" data-type="Rifle" data-cadencia="3" data-recuo="6" data-dano="7" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/carbinerifle.png" alt="Winchester 22"></div>
+                    <div class="card-info"><span class="card-type">Rifle</span><span class="card-name">Winchester 22</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
+                </div>
+
+                <!-- ===== MUNIÇÕES ===== -->
+                <div class="ammo-card ammo hidden" data-id="appistol" data-name="Munição Koch VP9" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Koch VP9</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="m1911" data-name="Munição M1911" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">M1911</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="fiveseven" data-name="Munição Five Seven" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Five Seven</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="desert" data-name="Munição Desert Eagle" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Desert Eagle</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="glock19" data-name="Munição Glock 19" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Glock 19</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="amt380" data-name="Munição AMT 380" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">AMT 380</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="m1922" data-name="Munição M1922" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">M1922</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="magnum44" data-name="Munição Magnum 44" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Magnum 44</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="uzi" data-name="Munição Uzi" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Uzi</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="smg" data-name="Munição MP5" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">MP5</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="mtar21" data-name="Munição MTAR-21" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">MTAR-21</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="tec9" data-name="Munição Tec-9" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Tec-9</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="remington" data-name="Munição Remington 870" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Remington 870</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="m4a1" data-name="Munição M4A1" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">M4A1</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="ak47" data-name="Munição AK-47" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">AK-47</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="thompson" data-name="Munição Thompson" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Thompson</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="g36c" data-name="Munição G36" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">G36</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="Sniper" data-name="Munição Sniper" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Sniper</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
+                </div>
+
+                <div class="ammo-card ammo hidden" data-id="winchester22" data-name="Munição Winchester 22" data-type="Munição" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/ammo.png" alt="Munição"></div>
+                    <div class="card-info"><span class="card-type">Munição</span><span class="card-name">Winchester 22</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR x50</div>
                 </div>
 
                 <!-- ===== UTILITÁRIOS ===== -->
-
-                <div class="weapon-card utilities hidden"
-                    data-action="Taser"
-                    data-name="TASER"
-                    data-type="Arma de Choque"
-                    data-ammo="Sem munição"
-                    data-cadencia="2"
-                    data-recuo="1"
-                    data-dano="3"
-                    data-url="images/choque.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/choque.png" alt="Taser">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Arma de Choque</span>
-                        <span class="card-name">TASER</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card utilities hidden" data-id="stungun" data-name="Taser" data-type="Arma de Choque" data-cadencia="2" data-recuo="1" data-dano="3" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/choque.png" alt="Taser"></div>
+                    <div class="card-info"><span class="card-type">Arma de Choque</span><span class="card-name">Taser</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card utilities hidden"
-                    data-action="KCT"
-                    data-name="CASSETETE"
-                    data-type="Arma Branca"
-                    data-ammo="Corpo a corpo"
-                    data-cadencia="3"
-                    data-recuo="2"
-                    data-dano="4"
-                    data-url="images/cacetete.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/cacetete.png" alt="Cassetete">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Arma Branca</span>
-                        <span class="card-name">CASSETETE</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card utilities hidden" data-id="extintor" data-name="Extintor" data-type="Equipamento" data-cadencia="0" data-recuo="0" data-dano="0" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/extintor.png" alt="Extintor"></div>
+                    <div class="card-info"><span class="card-type">Equipamento</span><span class="card-name">Extintor</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card utilities hidden"
-                    data-action="Faca"
-                    data-name="FACA"
-                    data-type="Arma Branca"
-                    data-ammo="Corpo a corpo"
-                    data-cadencia="4"
-                    data-recuo="1"
-                    data-dano="5"
-                    data-url="images/faca.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/faca.png" alt="Faca">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Arma Branca</span>
-                        <span class="card-name">FACA</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card utilities hidden" data-id="combustivel" data-name="Combustível" data-type="Equipamento" data-cadencia="0" data-recuo="0" data-dano="0" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/combustivel.png" alt="Combustível"></div>
+                    <div class="card-info"><span class="card-type">Equipamento</span><span class="card-name">Combustível</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card utilities hidden"
-                    data-action="Lanterna"
-                    data-name="LANTERNA"
-                    data-type="Equipamento"
-                    data-ammo="Sem munição"
-                    data-cadencia="0"
-                    data-recuo="0"
-                    data-dano="0"
-                    data-url="images/lanterna.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/lanterna.png" alt="Lanterna">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Equipamento</span>
-                        <span class="card-name">LANTERNA</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
+                <div class="item-card utilities hidden" data-id="raypistol" data-name="Ray Pistol" data-type="Arma Especial" data-cadencia="3" data-recuo="2" data-dano="5" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/combatpistol.png" alt="Ray Pistol"></div>
+                    <div class="card-info"><span class="card-type">Arma Especial</span><span class="card-name">Ray Pistol</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
-                <div class="weapon-card utilities hidden"
-                    data-action="colete"
-                    data-name="COLETE"
-                    data-type="Proteção"
-                    data-ammo="100 de armadura"
-                    data-cadencia="0"
-                    data-recuo="0"
-                    data-dano="0"
-                    data-url="images/colete1.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/colete1.png" alt="Colete">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Proteção</span>
-                        <span class="card-name">COLETE</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        PEGAR
-                    </div>
-                </div>
-
-                <!-- Guardar armas (utilitários) -->
-                <div class="weapon-card utilities hidden danger-card"
-                    data-action="Limpar"
-                    data-name="GUARDAR TUDO"
-                    data-type="Ação"
-                    data-ammo="—"
-                    data-cadencia="0"
-                    data-recuo="0"
-                    data-dano="0"
-                    data-url="images/ammo.png"
-                    onclick="selectWeapon(event)">
-                    <div class="card-img-wrap">
-                        <img src="images/ammo.png" alt="Guardar">
-                    </div>
-                    <div class="card-info">
-                        <span class="card-type">Ação</span>
-                        <span class="card-name">GUARDAR TUDO</span>
-                    </div>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none"><polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        GUARDAR
-                    </div>
+                <div class="item-card utilities hidden" data-id="colete" data-name="Colete" data-type="Proteção" data-cadencia="0" data-recuo="0" data-dano="0" onclick="selectItem(event)">
+                    <div class="card-img-wrap"><img src="images/colete1.png" alt="Colete"></div>
+                    <div class="card-info"><span class="card-type">Proteção</span><span class="card-name">Colete</span></div>
+                    <div class="card-action"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PEGAR</div>
                 </div>
 
             </div>
@@ -396,11 +360,10 @@
                     <img id="detailImg" src="" alt="">
                 </div>
                 <div class="detail-meta">
-                    <span class="detail-type" id="detailType">Rifle de Assalto</span>
-                    <h2 class="detail-name" id="detailName">M4A1</h2>
-                    <span class="detail-ammo" id="detailAmmo">200 munições</span>
+                    <span class="detail-type" id="detailType">Tipo</span>
+                    <h2 class="detail-name" id="detailName">Nome</h2>
                 </div>
-                <div class="detail-stats">
+                <div class="detail-stats" id="detailStats">
                     <div class="stat-row">
                         <div class="stat-label">
                             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -432,7 +395,7 @@
                         <span class="stat-val" id="valDano">0</span>
                     </div>
                 </div>
-                <button class="confirm-btn" id="confirmBtn" onclick="confirmWeapon()">
+                <button class="confirm-btn" id="confirmBtn" onclick="confirmItem()">
                     <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     ADICIONAR AO INVENTÁRIO
                 </button>
