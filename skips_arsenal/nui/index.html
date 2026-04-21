@@ -4,183 +4,449 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Arsenal</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="transition.css">
 </head>
 <body>
-    
-    <div class="all" style = 'display: none'>
-        <header>
-            <div class="title-container">
-                <img src="images/voidpng2.png" alt="">
-                <p>ARSENAL POLÍCIA</p>
+
+    <div class="overlay" style="display:none"></div>
+
+    <div class="all" style="display:none">
+
+        <!-- SIDEBAR ESQUERDA -->
+        <aside class="sidebar">
+
+            <!-- Cabeçalho da sidebar -->
+            <div class="sidebar-header">
+                <div class="badge-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L3 7V12C3 16.55 6.84 20.74 12 22C17.16 20.74 21 16.55 21 12V7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="sidebar-title-block">
+                    <span class="sidebar-label">DEPARTAMENTO</span>
+                    <span class="sidebar-title">ARSENAL</span>
+                </div>
             </div>
 
-            <div class="filter-container">
-                <p class ='filter active-filter' onclick = 'changeFilter(event)' >ARMAS DE FOGO</p>
-                <p class = 'filter'  onclick = 'changeFilter(event)'>UTILITÁRIOS</p>
+            <!-- Filtros / Categorias -->
+            <nav class="category-nav">
+                <button class="cat-btn active" data-cat="firearms" onclick="changeCategory(event)">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M3 12H7L9 7L12 17L14 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    ARMAS DE FOGO
+                </button>
+                <button class="cat-btn" data-cat="utilities" onclick="changeCategory(event)">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    UTILITÁRIOS
+                </button>
+            </nav>
+
+            <!-- Divisor -->
+            <div class="divider"></div>
+
+            <!-- Kit rápido (apenas na aba firearms) -->
+            <div class="quick-kit firearms-only">
+                <span class="section-label">KIT RÁPIDO</span>
+                <button class="kit-btn" onclick="sendAction('KITBASICO')">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M20 7H4C2.9 7 2 7.9 2 9V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V9C22 7.9 21.1 7 20 7Z" stroke="currentColor" stroke-width="1.5"/><path d="M16 7V5C16 3.9 15.1 3 14 3H10C8.9 3 8 3.9 8 5V7" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="12" x2="12" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="14" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    KIT BÁSICO COMPLETO
+                </button>
+                <button class="kit-btn danger" onclick="sendAction('Limpar')">
+                    <svg viewBox="0 0 24 24" fill="none"><polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 6V4h6v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    GUARDAR TODAS
+                </button>
             </div>
-        </header>
 
-        <main>
-            <aside class="chooseGun-container">
-                <h1 class = 'main-title'>ARMAS DE FOGO</h1>
+            <!-- Dica de teclado -->
+            <div class="keyboard-hint">
+                <kbd>ESC</kbd> para fechar
+            </div>
 
+        </aside>
 
-                <div class="unit-gun gun" onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'M4A1' data-status = '7|4|6' data-url = 'images/carbinerifle.png'> 
-                    <div class="img-container">
-                        <img src="images/carbinerifle.png" alt="">
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="content">
+
+            <!-- Cabeçalho da categoria -->
+            <div class="content-header">
+                <h1 class="content-title" id="categoryTitle">ARMAS DE FOGO</h1>
+                <span class="content-count" id="categoryCount">7 itens</span>
+            </div>
+
+            <!-- Grid de armas -->
+            <div class="weapons-grid" id="weaponsGrid">
+
+                <!-- ===== ARMAS DE FOGO ===== -->
+
+                <div class="weapon-card firearms"
+                    data-action="m4a1"
+                    data-name="M4A1"
+                    data-type="Rifle de Assalto"
+                    data-ammo="200 munições"
+                    data-cadencia="7"
+                    data-recuo="4"
+                    data-dano="6"
+                    data-url="images/carbinerifle.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/carbinerifle.png" alt="M4A1">
                     </div>
-                    <p>M4A1</p>
-                    <button  onclick = 'sendData(event)' data-id = 'm4a1'  style = 'display: none'>Equipar</button>
-                </div>
-                
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'PARAFAL 7.62' data-status = '7|5|6' data-url = 'images/specialcarbine.png'> 
-                    <div class="img-container">
-                        <img src="images/specialcarbine.png" alt="">
+                    <div class="card-info">
+                        <span class="card-type">Rifle de Assalto</span>
+                        <span class="card-name">M4A1</span>
                     </div>
-                    <p>PARAFAL</p>
-                    <button onclick = 'sendData(event)' data-id = 'm4a4'  style = 'display: none'>Equipar</button>
-                </div>
-
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'MP5' data-status = '8|3|6' data-url = 'images/smg.png'> 
-                    <div class="img-container">
-                        <img src="images/smg.png" alt="">
-                    </div>
-                    <p>MP5</p>
-                    <button onclick = 'sendData(event)' data-id = 'mp5'  style = 'display: none'>Equipar</button>
-                </div>
-
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'MPX' data-status = '7|4|7' data-url = 'images/mpx.png'> 
-                    <div class="img-container">
-                        <img src="images/mpx.png" alt="">
-                    </div>
-                    <p>MPX</p>
-                    <button onclick = 'sendData(event)' data-id = 'mpx'  style = 'display: none'>Equipar</button>
-                </div>
-
-
-
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'SHOTGUN' data-status = '2|7|3' data-url = 'images/pumpshotgun.png'> 
-                    <div class="img-container">
-                        <img src="images/pumpshotgun.png" alt="">
-                    </div>
-                    <p>SHOTGUN</p>
-                    <button onclick = 'sendData(event)' data-id = 'shot45'  style = 'display: none'>Equipar</button>
-                </div>
-
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'FIVE SEVEN' data-status = '4|4|4' data-url = 'images/pistolmk2.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img src="images/pistolmk2.png" alt="">
-                    </div>
-                    <p>FIVE SEVEN</p>
-                    <button  onclick = 'sendData(event)' data-id = 'fiveseven' style = 'display: none'>Equipar</button>
-                </div>
-
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'GLOCK 18' data-status = '4|4|4' data-url = 'images/combatpistol.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img src="images/combatpistol.png" alt="">
-                    </div>
-                    <p>GLOCK 18</p>
-                    <button  onclick = 'sendData(event)' data-id = 'glock18' style = 'display: none'>Equipar</button>
-                </div>
-
-
-                <div class="unit-gun gun"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'GUARDAR ARMAS' data-status = '0|0|0' data-url = 'images/ammo.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img src="images/ammo.png" alt="">
-                    </div>
-                    <p>GUARDAR</p>
-                    <button  onclick = 'sendData(event)' data-id = 'Limpar' style = 'display: none'>LIMPAR</button>
-                </div>
-
-                <!-- ============================================================================================================================================================================================ -->
-
-                <div style = 'display: none' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'TASER' data-status = '2|0|0' data-url = 'images\choque.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img src="images/choque.png" alt="">
-                    </div>
-                    <p>TASER</p>
-                    <button  onclick = 'sendData(event)' data-id = 'Taser' style = 'display: none'>Equipar</button>
-                </div>
-
-                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'CASSETETE' data-status = '2|2|0' data-url = 'images/cacetete.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img  src="images/cacetete.png" alt="">
-                    </div>
-                    <p>CASSETETE</p>
-                    <button  onclick = 'sendData(event)' data-id = 'KCT' style = 'display: none'>Equipar</button>
-                </div>
-
-                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'FACA' data-status = '2|2|0' data-url = 'images/faca.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img  src="images/faca.png" alt="">
-                    </div>
-                    <p>FACA</p>
-                    <button  onclick = 'sendData(event)' data-id = 'Faca' style = 'display: none'>Equipar</button>
-                </div>
-
-                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'LANTERNA' data-status = '0|0|0' data-url = 'images\lanterna.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img style = 'height: 30px' src="images/lanterna.png" alt="">
-                    </div>
-                    <p>LANTERNA</p>
-                    <button  onclick = 'sendData(event)' data-id = 'Lanterna' style = 'display: none'>Equipar</button>
-                </div>
-
-                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'COLETE' data-status = '0|0|0' data-url = 'images/colete1.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img  src="images/colete1.png" alt="">
-                    </div>
-                    <p>COLETE</p>
-                    <button  onclick = 'sendData(event)' data-id = 'colete' style = 'display: none'>Equipar</button>
-                </div>
-
-                <div style = 'display: none;' class="unit-gun pass"  onmouseover="showGun(event)" onmouseleave="hideGun(event)" data-name = 'GUARDAR ARMAS' data-status = '0|0|0' data-url = 'images/ammo.png'>
-                    <div class="img-container" style = 'justify-content: center;'>
-                        <img  src="images/ammo.png" alt="">
-                    </div>
-                    <p>GUARDAR</p>
-                    <button  onclick = 'sendData(event)' data-id = 'Limpar' style = 'display: none'>Equipar</button>
-                </div>
-
-
-            </aside>
-
-            <aside style = "display: none" class="gunInf-container">
-                <h1 class="mainTitle">MPX</h1>
-                <div class = 'fullImg-container'>
-                    <img class="bigImage" src="images/carbine-rifle-mk2.png" alt="">
-                </div>
-                <div class="status-container">
-                    <div class="status-unit">
-                        <div class = 'spec-info'>
-                            <p>C</p>
-                            <div class="empyt">
-                                <div class="fill C width">9/10</div>
-                            </div>
-                        </div>
-                        <div class = 'spec-info'>
-                            <p>R</p>
-                            <div class="empyt">
-                                <div class="fill R width" >7/10</div>
-                            </div>
-                        </div>
-                        <div class = 'spec-info'>
-                            <p>D</p>
-                            <div class="empyt">
-                                <div class="fill D width">4/10</div>
-                            </div>
-                        </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
                     </div>
                 </div>
-            </aside>
+
+                <div class="weapon-card firearms"
+                    data-action="m4a4"
+                    data-name="PARAFAL 7.62"
+                    data-type="Rifle de Assalto"
+                    data-ammo="200 munições"
+                    data-cadencia="7"
+                    data-recuo="5"
+                    data-dano="6"
+                    data-url="images/specialcarbine.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/specialcarbine.png" alt="PARAFAL">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Rifle de Assalto</span>
+                        <span class="card-name">PARAFAL 7.62</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card firearms"
+                    data-action="mp5"
+                    data-name="MP5"
+                    data-type="Submetralhadora"
+                    data-ammo="200 munições"
+                    data-cadencia="8"
+                    data-recuo="3"
+                    data-dano="5"
+                    data-url="images/smg.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/smg.png" alt="MP5">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Submetralhadora</span>
+                        <span class="card-name">MP5</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card firearms"
+                    data-action="mpx"
+                    data-name="MPX"
+                    data-type="Submetralhadora"
+                    data-ammo="200 munições"
+                    data-cadencia="7"
+                    data-recuo="4"
+                    data-dano="5"
+                    data-url="images/mpx.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/mpx.png" alt="MPX">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Submetralhadora</span>
+                        <span class="card-name">MPX</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card firearms"
+                    data-action="shot45"
+                    data-name="SHOTGUN"
+                    data-type="Espingarda"
+                    data-ammo="100 munições"
+                    data-cadencia="2"
+                    data-recuo="7"
+                    data-dano="9"
+                    data-url="images/pumpshotgun.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/pumpshotgun.png" alt="Shotgun">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Espingarda</span>
+                        <span class="card-name">SHOTGUN</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card firearms"
+                    data-action="fiveseven"
+                    data-name="FIVE SEVEN"
+                    data-type="Pistola"
+                    data-ammo="250 munições"
+                    data-cadencia="5"
+                    data-recuo="3"
+                    data-dano="4"
+                    data-url="images/pistolmk2.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/pistolmk2.png" alt="Five Seven">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Pistola</span>
+                        <span class="card-name">FIVE SEVEN</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card firearms"
+                    data-action="glock18"
+                    data-name="GLOCK 18"
+                    data-type="Pistola"
+                    data-ammo="250 munições"
+                    data-cadencia="6"
+                    data-recuo="3"
+                    data-dano="4"
+                    data-url="images/combatpistol.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/combatpistol.png" alt="Glock 18">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Pistola</span>
+                        <span class="card-name">GLOCK 18</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <!-- ===== UTILITÁRIOS ===== -->
+
+                <div class="weapon-card utilities hidden"
+                    data-action="Taser"
+                    data-name="TASER"
+                    data-type="Arma de Choque"
+                    data-ammo="Sem munição"
+                    data-cadencia="2"
+                    data-recuo="1"
+                    data-dano="3"
+                    data-url="images/choque.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/choque.png" alt="Taser">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Arma de Choque</span>
+                        <span class="card-name">TASER</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card utilities hidden"
+                    data-action="KCT"
+                    data-name="CASSETETE"
+                    data-type="Arma Branca"
+                    data-ammo="Corpo a corpo"
+                    data-cadencia="3"
+                    data-recuo="2"
+                    data-dano="4"
+                    data-url="images/cacetete.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/cacetete.png" alt="Cassetete">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Arma Branca</span>
+                        <span class="card-name">CASSETETE</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card utilities hidden"
+                    data-action="Faca"
+                    data-name="FACA"
+                    data-type="Arma Branca"
+                    data-ammo="Corpo a corpo"
+                    data-cadencia="4"
+                    data-recuo="1"
+                    data-dano="5"
+                    data-url="images/faca.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/faca.png" alt="Faca">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Arma Branca</span>
+                        <span class="card-name">FACA</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card utilities hidden"
+                    data-action="Lanterna"
+                    data-name="LANTERNA"
+                    data-type="Equipamento"
+                    data-ammo="Sem munição"
+                    data-cadencia="0"
+                    data-recuo="0"
+                    data-dano="0"
+                    data-url="images/lanterna.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/lanterna.png" alt="Lanterna">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Equipamento</span>
+                        <span class="card-name">LANTERNA</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <div class="weapon-card utilities hidden"
+                    data-action="colete"
+                    data-name="COLETE"
+                    data-type="Proteção"
+                    data-ammo="100 de armadura"
+                    data-cadencia="0"
+                    data-recuo="0"
+                    data-dano="0"
+                    data-url="images/colete1.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/colete1.png" alt="Colete">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Proteção</span>
+                        <span class="card-name">COLETE</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        PEGAR
+                    </div>
+                </div>
+
+                <!-- Guardar armas (utilitários) -->
+                <div class="weapon-card utilities hidden danger-card"
+                    data-action="Limpar"
+                    data-name="GUARDAR TUDO"
+                    data-type="Ação"
+                    data-ammo="—"
+                    data-cadencia="0"
+                    data-recuo="0"
+                    data-dano="0"
+                    data-url="images/ammo.png"
+                    onclick="selectWeapon(event)">
+                    <div class="card-img-wrap">
+                        <img src="images/ammo.png" alt="Guardar">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-type">Ação</span>
+                        <span class="card-name">GUARDAR TUDO</span>
+                    </div>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        GUARDAR
+                    </div>
+                </div>
+
+            </div>
         </main>
+
+        <!-- PAINEL DE DETALHES (direita) -->
+        <aside class="detail-panel" id="detailPanel">
+            <div class="detail-empty" id="detailEmpty">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7V12C3 16.55 6.84 20.74 12 22C17.16 20.74 21 16.55 21 12V7L12 2Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.3"/></svg>
+                <p>Selecione um item<br>para ver os detalhes</p>
+            </div>
+            <div class="detail-content" id="detailContent" style="display:none">
+                <div class="detail-img-wrap">
+                    <img id="detailImg" src="" alt="">
+                </div>
+                <div class="detail-meta">
+                    <span class="detail-type" id="detailType">Rifle de Assalto</span>
+                    <h2 class="detail-name" id="detailName">M4A1</h2>
+                    <span class="detail-ammo" id="detailAmmo">200 munições</span>
+                </div>
+                <div class="detail-stats">
+                    <div class="stat-row">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            Cadência
+                        </div>
+                        <div class="stat-bar-wrap">
+                            <div class="stat-bar cadencia-bar" id="statCadencia"></div>
+                        </div>
+                        <span class="stat-val" id="valCadencia">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Recuo
+                        </div>
+                        <div class="stat-bar-wrap">
+                            <div class="stat-bar recuo-bar" id="statRecuo"></div>
+                        </div>
+                        <span class="stat-val" id="valRecuo">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-label">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Dano
+                        </div>
+                        <div class="stat-bar-wrap">
+                            <div class="stat-bar dano-bar" id="statDano"></div>
+                        </div>
+                        <span class="stat-val" id="valDano">0</span>
+                    </div>
+                </div>
+                <button class="confirm-btn" id="confirmBtn" onclick="confirmWeapon()">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    ADICIONAR AO INVENTÁRIO
+                </button>
+            </div>
+        </aside>
+
     </div>
 
-    <div class="black-screen" style = 'display: none'></div>
+    <!-- Toast de confirmação -->
+    <div class="toast" id="toast">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="toastMsg">Item adicionado ao inventário!</span>
+    </div>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

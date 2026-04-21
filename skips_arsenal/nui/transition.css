@@ -1,150 +1,125 @@
+/* =============================================
+   TRANSITION.CSS — Animações de entrada/saída
+   ============================================= */
+
+/* Fade-in */
 @keyframes fade {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
+/* Fade-out */
 @keyframes hide {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }
+
+/* Slide da esquerda */
+@keyframes left {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Slide para cima */
+@keyframes up1 {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide para baixo */
+@keyframes down1 {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Expansão de largura (barras de stat) */
+@keyframes width {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+/* Destaque de borda */
+@keyframes border {
+    0%   { box-shadow: 0 0 0 0 rgba(59,130,246,0.5); }
+    50%  { box-shadow: 0 0 0 4px rgba(59,130,246,0.2); }
+    100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+}
+
+/* Escala */
+@keyframes sizeM {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Aparecer */
+@keyframes appear {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* =============================================
+   CLASSES UTILITÁRIAS
+   ============================================= */
 
 .fade {
     animation-name: fade;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards; 
+    animation-duration: 500ms;
+    animation-fill-mode: both;
+    animation-timing-function: ease;
 }
 
 .hide {
     animation-name: hide;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards; 
+    animation-duration: 500ms;
+    animation-fill-mode: both;
+    animation-timing-function: ease;
+    pointer-events: none !important;
 }
 
-
-@keyframes appear {
-    from {
-        background-color: #F5F5F5;
-    }
-
-    to {
-        background-color: #0095F4;
-    }
-}
-
-.active {
-    animation-name: appear;
-    animation-duration: 800ms;
-    animation-fill-mode: backwards; 
-}
-
-@keyframes sizeM{
-    from {
-        height: 0;
-        width: 0;
-    }
-
-    to {
-        height: 1;
-        width: 1;
-    }
-}
-
-
-.product-unit {
-    animation-name: sizeM;
-    animation-duration: 800ms;
-    animation-fill-mode: backwards; 
-}
-
-
-@keyframes up1{
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0%);
-    }
+.left {
+    animation-name: left;
+    animation-duration: 400ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .up {
     animation-name: up1;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards; 
-}
-
-
-@keyframes down1{
-    from {
-        transform: translateY(0%);
-    }
-
-    to {
-        transform: translateY(100%);
-    }
+    animation-duration: 400ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .down {
     animation-name: down1;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards; 
-}
-
-@keyframes width{
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 1;
-    }
+    animation-duration: 400ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .width {
     animation-name: width;
     animation-duration: 600ms;
-    animation-fill-mode: backwards; 
-}
-
-@keyframes border{
-    from {
-        border-bottom: solid 0px transparent;
-    }
-
-    to {
-        border-bottom: solid 5px #0196f4;
-    }
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .border {
     animation-name: border;
     animation-duration: 600ms;
-    animation-fill-mode: backwards; 
+    animation-fill-mode: both;
 }
 
-
-@keyframes left{
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0%);
-    }
+.sizeM {
+    animation-name: sizeM;
+    animation-duration: 450ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.left {
-    animation-name: left;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards; 
+.appear {
+    animation-name: appear;
+    animation-duration: 350ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }

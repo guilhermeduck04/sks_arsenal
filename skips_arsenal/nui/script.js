@@ -1,208 +1,265 @@
-function showGun(event) {
-    let all = document.querySelector(".gunInf-container")
-    all.style.display = 'flex'
+/* =============================================
+   ARSENAL SKS — script.js
+   ============================================= */
 
-    let main = event.currentTarget;
-    let name = main.childNodes[3]
-    let bttn = main.childNodes[5]
+let selectedCard = null;
+let selectedAction = null;
 
-    name.style.display = 'none';
-    bttn.style.display = 'block';
-    bttn.classList.remove('fade')
-    bttn.classList.add('fade')
-    
+// -----------------------------------------------
+// Seleciona um card e exibe os detalhes no painel
+// -----------------------------------------------
+function selectWeapon(event) {
+    const card = event.currentTarget;
 
-    // =========================================================
+    // Remove seleção anterior
+    if (selectedCard) {
+        selectedCard.classList.remove('selected');
+    }
 
-    let status = main.dataset.status.split('|')
-    
-    let c = document.querySelector('.C')
-    let r = document.querySelector('.R')
-    let d = document.querySelector('.D')
-    c.classList.add('width')
-    r.classList.add('width')
-    d.classList.add('width')
+    card.classList.add('selected');
+    selectedCard = card;
+    selectedAction = card.dataset.action;
 
-    c.style.width = `${status[0]}0%`
-    c.textContent = `${status[0]}/10`
+    // Lê os dados do card
+    const name      = card.dataset.name;
+    const type      = card.dataset.type;
+    const ammo      = card.dataset.ammo;
+    const url       = card.dataset.url;
+    const cadencia  = parseInt(card.dataset.cadencia) || 0;
+    const recuo     = parseInt(card.dataset.recuo)    || 0;
+    const dano      = parseInt(card.dataset.dano)     || 0;
 
+    // Atualiza o painel de detalhes
+    const detailEmpty   = document.getElementById('detailEmpty');
+    const detailContent = document.getElementById('detailContent');
 
-    d.style.width = `${status[1]}0%`
-    d.textContent = `${status[1]}/10`
+    detailEmpty.style.display   = 'none';
+    detailContent.style.display = 'flex';
 
-    r.style.width = `${status[2]}0%`
-    r.textContent = `${status[2]}/10`
+    document.getElementById('detailImg').src    = url;
+    document.getElementById('detailName').textContent = name;
+    document.getElementById('detailType').textContent = type;
+    document.getElementById('detailAmmo').textContent = ammo;
 
-    let img = document.querySelector('.bigImage')
-    if (main.dataset.name == 'LANTERNA' || main.dataset.name == 'ESCOPETA') {
-        img.style.height = '100px'
+    // Anima as barras de estatística
+    requestAnimationFrame(() => {
+        const barC = document.getElementById('statCadencia');
+        const barR = document.getElementById('statRecuo');
+        const barD = document.getElementById('statDano');
+
+        // Reseta primeiro para forçar re-animação
+        barC.style.width = '0%';
+        barR.style.width = '0%';
+        barD.style.width = '0%';
+
+        requestAnimationFrame(() => {
+            barC.style.width = `${cadencia * 10}%`;
+            barR.style.width = `${recuo * 10}%`;
+            barD.style.width = `${dano * 10}%`;
+        });
+    });
+
+    document.getElementById('valCadencia').textContent = cadencia;
+    document.getElementById('valRecuo').textContent    = recuo;
+    document.getElementById('valDano').textContent     = dano;
+
+    // Ajusta o botão de confirmação para itens sem stats (utilitários)
+    const confirmBtn = document.getElementById('confirmBtn');
+    if (selectedAction === 'Limpar') {
+        confirmBtn.textContent = '';
+        confirmBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            GUARDAR TODAS AS ARMAS`;
+        confirmBtn.style.background = 'var(--danger)';
     } else {
-        img.style.height = '170px'
+        confirmBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            ADICIONAR AO INVENTÁRIO`;
+        confirmBtn.style.background = '';
     }
-
-    img.src = main.dataset.url
-    img.classList.add('fade')
-
-    let title = document.querySelector('.mainTitle')
-    title.textContent = main.dataset.name
-    title.classList.add('fade')
-
 }
 
-function hideGun(event){
-    let title = document.querySelector('.mainTitle')
-    title.classList.remove('fade')
+// -----------------------------------------------
+// Confirma e envia a ação do item selecionado
+// -----------------------------------------------
+function confirmWeapon() {
+    if (!selectedAction) return;
 
-    let img = document.querySelector('.bigImage')
-    img.classList.remove('fade')
+    const name = selectedCard ? selectedCard.dataset.name : 'Item';
+    postAction(selectedAction);
 
+    // Feedback visual
+    showToast(
+        selectedAction === 'Limpar'
+            ? 'Armas guardadas com sucesso!'
+            : `${name} adicionado ao inventário!`
+    );
 
-    let main = event.currentTarget;
-    let name = main.childNodes[3]
-    let bttn = main.childNodes[5]
-
-    name.style.display = 'block';
-    name.classList.remove('fade')
-    name.classList.add('fade')
-
-
-    bttn.style.display = 'none';
-    bttn.classList.remove('fade')
-    bttn.classList.add('fade')
-
-    let c = document.querySelector('.C')
-    let r = document.querySelector('.R')
-    let d = document.querySelector('.D')
-    c.classList.remove('width')
-    r.classList.remove('width')
-    d.classList.remove('width')
+    // Fecha o menu após confirmar
+    setTimeout(() => closeMenu(), 800);
 }
 
-function changeFilter(event) {
-    let filters = document.querySelectorAll('.filter')
-    for (let i in filters) {
-        try {
-            filters[i].classList.remove('active-filter')
-        } catch (e) {
-            continue
-        }
+// -----------------------------------------------
+// Ação rápida (kit básico / guardar pela sidebar)
+// -----------------------------------------------
+function sendAction(action) {
+    postAction(action);
+
+    const labels = {
+        'KITBASICO': 'Kit básico adicionado ao inventário!',
+        'Limpar':    'Armas guardadas com sucesso!'
+    };
+
+    showToast(labels[action] || 'Ação executada!');
+    setTimeout(() => closeMenu(), 800);
+}
+
+// -----------------------------------------------
+// Envia o fetch para o FiveM NUI callback
+// -----------------------------------------------
+async function postAction(action) {
+    try {
+        await fetch(`http://skips_arsenal/${action}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({})
+        });
+    } catch (e) {
+        // Silencia erros fora do ambiente FiveM
     }
+}
 
-    let element = event.currentTarget
-    element.classList.add('active-filter')
-    element.classList.add('border')
+// -----------------------------------------------
+// Fecha o menu e libera o foco da NUI
+// -----------------------------------------------
+function closeMenu() {
+    const all     = document.querySelector('.all');
+    const overlay = document.querySelector('.overlay');
 
-    setTimeout(() =>{
-        element.classList.remove('border')
-    }, 600)
+    all.classList.remove('entering');
+    all.classList.add('hide');
+    overlay.classList.add('hide');
 
-    let guns = document.querySelectorAll('.gun')
-    let pass = document.querySelectorAll('.pass')
-    if (element.textContent == 'ARMAS DE FOGO') {
-        document.querySelector('.main-title').textContent = 'ARMAS DE FOGO'
+    setTimeout(() => {
+        all.style.display     = 'none';
+        overlay.style.display = 'none';
+        all.classList.remove('hide');
+        overlay.classList.remove('hide');
+        resetDetail();
+    }, 580);
 
-        for (let a in guns) {
-            try {
-                guns[a].style.display = 'flex'
-                guns[a].classList.add('left')
+    postAction('NUIFocusOff');
+}
 
-            } catch (e) {
-                continue
-            }
-        }
+// -----------------------------------------------
+// Reseta o painel de detalhes
+// -----------------------------------------------
+function resetDetail() {
+    selectedCard   = null;
+    selectedAction = null;
 
-        for (let p in guns) {
-            try {
-                pass[p].style.display = 'none'
-                pass[p].classList.remove('left')
-            } catch (e) {
-                continue
-            }
-        }
-        
+    document.getElementById('detailEmpty').style.display   = 'flex';
+    document.getElementById('detailContent').style.display = 'none';
+
+    document.querySelectorAll('.weapon-card.selected').forEach(c => {
+        c.classList.remove('selected');
+    });
+}
+
+// -----------------------------------------------
+// Troca de categoria (Armas de Fogo / Utilitários)
+// -----------------------------------------------
+function changeCategory(event) {
+    const btn = event.currentTarget;
+    const cat = btn.dataset.cat;
+
+    // Atualiza botões
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Mostra/oculta cards
+    const firearms  = document.querySelectorAll('.weapon-card.firearms');
+    const utilities = document.querySelectorAll('.weapon-card.utilities');
+
+    if (cat === 'firearms') {
+        firearms.forEach(c  => c.classList.remove('hidden'));
+        utilities.forEach(c => c.classList.add('hidden'));
+        document.getElementById('categoryTitle').textContent = 'ARMAS DE FOGO';
+        document.getElementById('categoryCount').textContent = `${firearms.length} itens`;
+        document.querySelector('.firearms-only').style.display = 'flex';
     } else {
-        document.querySelector('.main-title').textContent = 'UTILITÁRIOS'
-
-        for (let a in guns) {
-            try {
-                guns[a].style.display = 'none'
-                guns[a].classList.remove('left')
-            } catch (e) {
-                continue
-            }
-        }
-
-        for (let p in guns) {
-            try {
-                pass[p].style.display = 'flex'
-                pass[p].classList.add('left')
-            } catch (e) {
-                continue
-            }
-        }
-    }
-}
-
-async function sendData(event) {
-    let main = event.currentTarget;
-    
-
-    let options = {
-        method: 'POST',
-        body: JSON.stringify({})
+        firearms.forEach(c  => c.classList.add('hidden'));
+        utilities.forEach(c => c.classList.remove('hidden'));
+        document.getElementById('categoryTitle').textContent = 'UTILITÁRIOS';
+        document.getElementById('categoryCount').textContent = `${utilities.length} itens`;
+        document.querySelector('.firearms-only').style.display = 'none';
     }
 
-    await fetch(`http://skips_arsenal/${main.dataset.id}`, options)
+    resetDetail();
 }
 
-async function sendData2(action) {
-    let options = {
-        method: 'POST',
-        body:JSON.stringify({})
-    }
+// -----------------------------------------------
+// Toast de feedback
+// -----------------------------------------------
+let toastTimer = null;
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
 
-    await fetch(`http://skips_arsenal/${action}`, options)
+    toast.classList.add('show');
+
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
-
-document.querySelector('body').addEventListener('keydown', function(event) {
-
-    let all = document.querySelector('.all')
-
-    let black = document.querySelector('.black-screen')
-
-    if (event.keyCode == '27') {
-        all.classList.remove('fade')
-        all.classList.add('hide')
-        black.classList.add('hide')
-        setTimeout(function() {
-            black.style.display = 'none'
-            all.style.display = 'none'
-        }, 580)
-
-        sendData2('NUIFocusOff')
+// -----------------------------------------------
+// Tecla ESC para fechar
+// -----------------------------------------------
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' || e.keyCode === 27) {
+        closeMenu();
     }
 });
 
-window.addEventListener('message', (data) => {
-    console.log(data)
-    let all = document.querySelector('.all')
+// -----------------------------------------------
+// Mensagens vindas do FiveM (showMenu / hideMenu)
+// -----------------------------------------------
+window.addEventListener('message', function(event) {
+    const data = event.data;
 
-    if (data.data.showMenu) {
-        document.querySelector('.black-screen').style.display = 'block'
-        all.classList.add('fade')
-        all.classList.remove('hide')
-        setTimeout(function() {
-            all.style.display = 'block'
-        }, 580)
-    } else if (data.data.hideMenu) {
-        document.querySelector('.black-screen').style.display = 'none'
-        all.classList.add('hide')
-        all.classList.remove('fade')
-        setTimeout(function() {
-            all.style.display = 'none'
-        }, 580)
+    if (data.showMenu) {
+        openMenu();
+    } else if (data.hideMenu) {
+        closeMenu();
     }
+});
 
+function openMenu() {
+    const all     = document.querySelector('.all');
+    const overlay = document.querySelector('.overlay');
 
-}) 
+    // Garante categoria inicial correta
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-cat="firearms"]').classList.add('active');
+    document.querySelectorAll('.weapon-card.firearms').forEach(c  => c.classList.remove('hidden'));
+    document.querySelectorAll('.weapon-card.utilities').forEach(c => c.classList.add('hidden'));
+    document.getElementById('categoryTitle').textContent = 'ARMAS DE FOGO';
+    document.getElementById('categoryCount').textContent = `${document.querySelectorAll('.weapon-card.firearms').length} itens`;
+    document.querySelector('.firearms-only').style.display = 'flex';
+
+    resetDetail();
+
+    overlay.style.display = 'block';
+    all.style.display     = 'flex';
+
+    // Força reflow para animação
+    void all.offsetWidth;
+    all.classList.add('entering');
+    all.classList.remove('hide');
+    overlay.classList.remove('hide');
+}
